@@ -1,0 +1,23 @@
+# Ignore data directory
+data/
+
+# Ignore large output files
+*.h5ad
+*.mtx
+*.csv
+*.rds
+*.hdf5
+*.loom
+*.log
+
+# Ignore Jupyter and notebook cache files
+.ipynb_checkpoints/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore system files
+.DS_Store
+Thumbs.db
