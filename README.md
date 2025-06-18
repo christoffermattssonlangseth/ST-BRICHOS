@@ -18,7 +18,7 @@ This repository contains analysis code and documentation for a spatial transcrip
 | APP<sub>NLGF</sub> | BRICHOS (treated)     | 3 |
 
 * **Treatment schedule**: 2×/week for 3 months
-* **Platform**: 10x Genomics Xenium
+* **Platform**: Spatial Transcriptomics 10x Genomics
 * **Tissue**: Coronal mouse brain sections, aligned to the Allen Mouse Brain Atlas
 
 ---
