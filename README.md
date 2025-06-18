@@ -54,7 +54,3 @@ This repository contains analysis code and documentation for a spatial transcrip
 
 ---
 
-## 🔬 Key Methods
-
-* **Preprocessing**: Using Scanpy and Xenium-formatted `.h5ad` files
-* **Clustering**: PCA → neighb
