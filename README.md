@@ -48,10 +48,7 @@ This repository contains analysis code and documentation for a spatial transcrip
 │   ├── clustering.ipynb     # Dimensionality reduction and Leiden clustering
 │   ├── differential_expression.ipynb
 │   └── visualization.ipynb
-├── figures/                 # Exported plots and visualizations
 ├── utils/                   # Helper Python functions (e.g., plotting, scoring)
-├── plaque_genes.txt         # Known AD-related plaque-induced genes
-├── requirements.txt         # Python dependencies
 └── README.md
 ```
 
