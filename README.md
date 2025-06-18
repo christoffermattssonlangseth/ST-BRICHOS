@@ -5,7 +5,7 @@
 
 ## Project Overview
 
-This repository contains analysis code and documentation for a spatial transcriptomics study investigating the effects of **BRICHOS treatment** in the **APP<sub>NLGF</sub> transgenic mouse model** of Alzheimer’s disease (AD). The project utilizes **10x Genomics Xenium** technology to explore how BRICHOS modulates gene expression at a regional and cellular level across the mouse brain.
+This repository contains analysis code and documentation for a spatial transcriptomics study investigating the effects of **BRICHOS treatment** in the **APP<sub>NLGF</sub> transgenic mouse model** of Alzheimer’s disease (AD). The project utilizes **SPATIAL TRANSCRIPTOMICS** technology to explore how BRICHOS modulates gene expression at a regional and cellular level across the mouse brain.
 
 ---
 
