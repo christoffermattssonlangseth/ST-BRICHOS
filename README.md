@@ -1,4 +1,4 @@
-# 🧠 BRICHOS–APPNLGF Spatial Transcriptomics
+# 🧠 BRICHOS Spatial Transcriptomics
 <p align="center">
   <img src="assets/logo.png" alt="ST BRICHOS Logo" width="400"/>
 </p>
