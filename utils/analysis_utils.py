@@ -211,3 +211,41 @@ def plot_relative_cluster_composition(adata, cluster_key="leiden", groupby="trea
     plt.tight_layout()
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.show()
+
+def score_and_plot_modules(adata, modules, groupby="treatment", dendrogram=True):
+    """
+    Score gene modules and plot dotplot with optional dendrogram.
+
+    Parameters:
+    - adata: AnnData object
+    - modules: dict of {module_name: [genes]}
+    - groupby: str, column in .obs to group by
+    - dendrogram: bool, whether to compute and show hierarchical clustering
+    """
+
+    # Score each module
+    for name, genes in modules.items():
+        genes_present = [g for g in genes if g in adata.var_names]
+        if len(genes_present) < 3:
+            print(f"⚠️ Skipping {name} (only {len(genes_present)} genes found)")
+            continue
+        sc.tl.score_genes(adata, gene_list=genes_present, score_name=f"{name}_score")
+        print(f"✅ Scored {name} module with {len(genes_present)} genes")
+
+    # Optional dendrogram
+    if dendrogram:
+        try:
+            sc.tl.dendrogram(adata, groupby=groupby)
+        except ValueError as e:
+            print(f"⚠️ Could not compute dendrogram: {e}")
+            dendrogram = False
+
+    # Plot
+    sc.pl.dotplot(
+        adata,
+        var_names=[f"{k}_score" for k in modules],
+        groupby=groupby,
+        dendrogram=dendrogram,
+        standard_scale="var",
+        color_map="coolwarm"
+    )
