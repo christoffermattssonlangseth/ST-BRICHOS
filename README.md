@@ -44,7 +44,6 @@ This repository contains analysis code and documentation for a spatial transcrip
 ```
 ├── data/                    # Raw and processed data (e.g. .h5ad files)
 ├── notebooks/               # Jupyter Notebooks for analysis
-│   ├── notebooks/                        # Jupyter Notebooks for spatial transcriptomics analysis
 │   ├── create_h5ad.ipynb            # Initial conversion of SpaceRanger output to AnnData
 │   ├── preprocessing.ipynb          # Filtering, normalization, and metadata setup
 │   ├── concatenation_of_samples.ipynb  # Sample merging and global quality control
