@@ -42,7 +42,7 @@ This repository contains analysis code and documentation for a spatial transcrip
 ## 📁 Repository Structure
 
 ```
-├── data/                    # Raw and processed data (e.g. .h5ad files)
+├── assets/                    # logo
 ├── notebooks/               # Jupyter Notebooks for analysis
 │   ├── create_h5ad.ipynb            # Initial conversion of SpaceRanger output to AnnData
 │   ├── preprocessing.ipynb          # Filtering, normalization, and metadata setup
@@ -51,6 +51,7 @@ This repository contains analysis code and documentation for a spatial transcrip
 │   ├── further_clustering.ipynb     # Refinement of clusters and substructure identification
 │   ├── regional_annotation.ipynb    # Integration of anatomical annotations with spatial barcodes
 │   ├── comparing_regions.ipynb      # Region-specific differential expression and comparisons
+├── log/                     # logbook   
 ├── utils/                   # Helper Python functions (e.g., plotting, scoring)
 └── README.md
 ```
