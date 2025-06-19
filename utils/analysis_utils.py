@@ -3,6 +3,40 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
+def volcano_plot_region_within_group(adata, region, logfc_thresh=1, padj_thresh=0.05, top_n=10):
+    de = sc.get.rank_genes_groups_df(adata, group=region)
+    de = de.replace([np.inf, -np.inf], np.nan).dropna(subset=['logfoldchanges', 'pvals_adj'])
+    de['-log10(padj)'] = -np.log10(de['pvals_adj'])
+
+    plt.figure(figsize=(10, 6))
+    plt.scatter(de['logfoldchanges'], de['-log10(padj)'], c='lightgrey', alpha=0.7)
+
+    sig = (de['pvals_adj'] < padj_thresh) & (np.abs(de['logfoldchanges']) > logfc_thresh)
+    plt.scatter(
+        de.loc[sig, 'logfoldchanges'],
+        de.loc[sig, '-log10(padj)'],
+        c='crimson'
+    )
+
+    top_genes = de.loc[sig].sort_values('-log10(padj)', ascending=False).head(top_n)
+    for _, row in top_genes.iterrows():
+        plt.text(
+            row['logfoldchanges'],
+            row['-log10(padj)'],
+            row['names'],
+            fontsize=8,
+            ha='right' if row['logfoldchanges'] < 0 else 'left'
+        )
+
+    plt.axhline(-np.log10(padj_thresh), linestyle='--', color='gray')
+    plt.axvline(-logfc_thresh, linestyle='--', color='gray')
+    plt.axvline(logfc_thresh, linestyle='--', color='gray')
+    plt.xlabel("log2 fold change (region vs rest)")
+    plt.ylabel("-log10 adjusted p-value")
+    plt.title(f"Volcano plot — Region: {region} (within {adata.obs['treatment'][0]})")
+    plt.tight_layout()
+    plt.show()
+
 def volcano_plot_br(adata, groupby="treatment", group1="BRICHOS", group2="PBS", top_n=10):
     """
     Generate a volcano plot comparing group1 vs group2 in a Scanpy AnnData object.
