@@ -14,3 +14,6 @@ We also generated project documentation in the form of a README.md that includes
 Work concluded with preparation for regional DE comparisons, module scoring for known gene sets, and further modularization of the analysis codebase.
 
 I added the regional annotations that were made by Cloé. 
+
+## 2025-06-19
+Refined the clustering and added some functionality in the utils. 
