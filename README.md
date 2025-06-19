@@ -44,13 +44,16 @@ This repository contains analysis code and documentation for a spatial transcrip
 ```
 ├── data/                    # Raw and processed data (e.g. .h5ad files)
 ├── notebooks/               # Jupyter Notebooks for analysis
-│   ├── preprocessing.ipynb  # Sample merging, QC, spatial setup
-│   ├── clustering.ipynb     # Dimensionality reduction and Leiden clustering
-│   ├── differential_expression.ipynb
-│   └── visualization.ipynb
+│   ├── notebooks/                        # Jupyter Notebooks for spatial transcriptomics analysis
+│   ├── create_h5ad.ipynb            # Initial conversion of SpaceRanger output to AnnData
+│   ├── preprocessing.ipynb          # Filtering, normalization, and metadata setup
+│   ├── concatenation_of_samples.ipynb  # Sample merging and global quality control
+│   ├── inital_analysis.ipynb        # PCA, neighborhood graph, UMAP, Leiden clustering
+│   ├── further_clustering.ipynb     # Refinement of clusters and substructure identification
+│   ├── regional_annotation.ipynb    # Integration of anatomical annotations with spatial barcodes
+│   ├── comparing_regions.ipynb      # Region-specific differential expression and comparisons
 ├── utils/                   # Helper Python functions (e.g., plotting, scoring)
 └── README.md
 ```
 
 ---
-
