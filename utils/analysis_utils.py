@@ -162,7 +162,7 @@ def plot_spatial_clusters_per_sample(
                 ad_int,
                 spot_size=spot_size,
                 color=color,
-                title=sample_id,
+                title=sample_id + '(' +ad_int.obs.treatment.unique()[0] +')',
                 show=False,
                 ax=ax
             )
