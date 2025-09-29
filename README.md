@@ -59,7 +59,7 @@ This repository contains analysis code and documentation for a spatial transcrip
 ---
 
 TODO
-1. Verify expression levels of Itm2b and Itm2c (WT vs. BRICHOS; WT vs. PBS).
+1. Verify expression levels of and Itm2c (WT vs. BRICHOS; WT vs. PBS) [DONE ✅].
 2. Run stereoscope to integrate single cell and spatial data. 
 3. Assess regional differences between BRICHOS and PBS conditions.
 4. Annotate brain regions in the remaining samples.
