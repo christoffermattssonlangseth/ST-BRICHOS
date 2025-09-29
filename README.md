@@ -58,9 +58,9 @@ This repository contains analysis code and documentation for a spatial transcrip
 
 ---
 
-TODO: 
-- Check the expression of Itm2b and Itm2c (WT and BRICHOS, WT and PBS).
-- Stereoscope single cell data.
-- Check regional differences between BRICHOS and PBS
-- Annotate the regions in the remaining samples.
-- Run differentially expressed genes through gene ontology (endocytosis or endocytic cycling could be affected, microglial effect in bulk at least).
+TODO
+1. Verify expression levels of Itm2b and Itm2c (WT vs. BRICHOS; WT vs. PBS).
+2. Run stereoscope to integrate single cell and spatial data. 
+3. Assess regional differences between BRICHOS and PBS conditions.
+4. Annotate brain regions in the remaining samples.
+5. Perform differential expression analysis followed by gene ontology enrichment (focus on processes such as endocytosis/endocytic cycling, noting possible microglial effects in bulk data).
