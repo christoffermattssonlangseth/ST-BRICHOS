@@ -57,3 +57,9 @@ This repository contains analysis code and documentation for a spatial transcrip
 ```
 
 ---
+
+TODO: 
+- Check the expression of Itm2b and Itm2c (WT and BRICHOS, WT and PBS)
+- Check regional differences between BRICHOS and PBS
+- Annotate the regions in the remaining samples
+- Run differentially expressed genes through gene ontology (endocytosis or endocytic cycling could be affected, microglial effect in bulk at least)
