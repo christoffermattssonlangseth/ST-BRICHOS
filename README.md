@@ -42,25 +42,23 @@ This repository contains analysis code and documentation for a spatial transcrip
 ## 📁 Repository Structure
 
 ```
-├── assets/                    # logo
-├── notebooks/               # Jupyter Notebooks for analysis
-│   ├── create_h5ad.ipynb            # Initial conversion of SpaceRanger output to AnnData
-│   ├── preprocessing.ipynb          # Filtering, normalization, and metadata setup
-│   ├── concatenation_of_samples.ipynb  # Sample merging and global quality control
-│   ├── inital_analysis.ipynb        # PCA, neighborhood graph, UMAP, Leiden clustering
-│   ├── further_clustering.ipynb     # Refinement of clusters and substructure identification
-│   ├── regional_annotation.ipynb    # Integration of anatomical annotations with spatial barcodes
-│   ├── comparing_regions.ipynb      # Region-specific differential expression and comparisons
-├── log/                     # logbook   
-├── utils/                   # Helper Python functions (e.g., plotting, scoring)
+├── assets/               # Logo and figures used in docs
+├── data/                 # Local data (ignored by git)
+├── log/                  # Logbook
+├── notebooks/
+│   ├── 00/               # Core analysis pipeline notebooks
+│   ├── 01/               # Figure- and report-focused notebooks
+│   └── 00/_scratch/      # Untitled/experimental notebooks
+├── results/              # Outputs (figures, tables)
+├── utils/                # Helper Python functions (e.g., plotting, scoring)
 └── README.md
 ```
 
 ---
 
 TODO
-1. Verify expression levels of and Itm2c (WT vs. BRICHOS; WT vs. PBS) [DONE ✅].
-2. Run stereoscope to integrate single cell and spatial data [in progess ⏳]. 
-3. Assess regional differences between BRICHOS and PBS conditions [in progess ⏳].
+1. Verify expression levels of Itm2c (WT vs. BRICHOS; WT vs. PBS) [DONE ✅].
+2. Run stereoscope to integrate single cell and spatial data [in progress ⏳]. 
+3. Assess regional differences between BRICHOS and PBS conditions [in progress ⏳].
 4. Annotate brain regions in the remaining samples [DONE ✅].
 5. Perform differential expression analysis followed by gene ontology enrichment (focus on processes such as endocytosis/endocytic cycling, noting possible microglial effects in bulk data) [DONE ✅].

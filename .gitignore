@@ -12,6 +12,8 @@ data/
 
 # Ignore Jupyter and notebook cache files
 .ipynb_checkpoints/
+notebooks/**/abc_atlas_cache/
+notebooks/**/lightning_logs/
 
 # Ignore Python cache files
 __pycache__/
