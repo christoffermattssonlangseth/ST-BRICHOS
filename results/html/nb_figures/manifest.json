@@ -1,0 +1,142 @@
+{
+  "nb00_volcano_pbs_vs_wt": [
+    "nb_figures/nb00_volcano_pbs_vs_wt.png",
+    "Volcano: PBS vs WT (whole tissue)"
+  ],
+  "nb01_volcano_bri_vs_wt": [
+    "nb_figures/nb01_volcano_bri_vs_wt.png",
+    "Volcano: BRICHOS vs WT (whole tissue)"
+  ],
+  "nb02_volcano_bri_vs_pbs": [
+    "nb_figures/nb02_volcano_bri_vs_pbs.png",
+    "Volcano: BRICHOS vs PBS"
+  ],
+  "nb03_volcano_pbs_vs_wt": [
+    "nb_figures/nb03_volcano_pbs_vs_wt.png",
+    "Volcano: PBS vs WT"
+  ],
+  "nb03_volcano_bri_vs_wt": [
+    "nb_figures/nb03_volcano_bri_vs_wt.png",
+    "Volcano: BRICHOS vs WT"
+  ],
+  "nb03_volcano_bri_vs_pbs": [
+    "nb_figures/nb03_volcano_bri_vs_pbs.png",
+    "Volcano: BRICHOS vs PBS"
+  ],
+  "nb03_lfc_correlation": [
+    "nb_figures/nb03_lfc_correlation.png",
+    "Log2FC correlation: PBS vs BRICHOS effect"
+  ],
+  "nb03_attenuation_scatter": [
+    "nb_figures/nb03_attenuation_scatter.png",
+    "Attenuation scatter"
+  ],
+  "nb03_pig_barplot": [
+    "nb_figures/nb03_pig_barplot.png",
+    "PIG genes expression"
+  ],
+  "nb03_pig_dotplot": [
+    "nb_figures/nb03_pig_dotplot.png",
+    "PIG dotplot by treatment"
+  ],
+  "nb03_stacked_summary": [
+    "nb_figures/nb03_stacked_summary.png",
+    "Three-way summary"
+  ],
+  "nb03_heatmap": [
+    "nb_figures/nb03_heatmap.png",
+    "Three-way heatmap"
+  ],
+  "nb04_umap_regions": [
+    "nb_figures/nb04_umap_regions.png",
+    "UMAP colored by brain region"
+  ],
+  "nb04_spatial_regions": [
+    "nb_figures/nb04_spatial_regions.png",
+    "Spatial map of brain regions"
+  ],
+  "nb04_region_composition": [
+    "nb_figures/nb04_region_composition.png",
+    "Regional cluster composition"
+  ],
+  "nb04_spatial_pig": [
+    "nb_figures/nb04_spatial_pig.png",
+    "Spatial PIG score"
+  ],
+  "nb04_pig_by_region": [
+    "nb_figures/nb04_pig_by_region.png",
+    "PIG score by region and treatment"
+  ],
+  "nb04_sig_genes_region": [
+    "nb_figures/nb04_sig_genes_region.png",
+    "Significant DE genes per region"
+  ],
+  "nb04_de_summary_barplot": [
+    "nb_figures/nb04_de_summary_barplot.png",
+    "DE gene counts per region"
+  ],
+  "nb04_heatmap_regions": [
+    "nb_figures/nb04_heatmap_regions.png",
+    "Heatmap: top genes across regions"
+  ],
+  "nb04_regional_summary": [
+    "nb_figures/nb04_regional_summary.png",
+    "Regional BRICHOS vs PBS summary"
+  ],
+  "nb05_volcano_pbs_vs_wt": [
+    "nb_figures/nb05_volcano_pbs_vs_wt.png",
+    "Volcano: PBS vs WT"
+  ],
+  "nb05_volcano_bri_vs_wt": [
+    "nb_figures/nb05_volcano_bri_vs_wt.png",
+    "Volcano: BRICHOS vs WT"
+  ],
+  "nb05_volcano_bri_vs_pbs": [
+    "nb_figures/nb05_volcano_bri_vs_pbs.png",
+    "Volcano: BRICHOS vs PBS"
+  ],
+  "nb05_attenuation_scatter": [
+    "nb_figures/nb05_attenuation_scatter.png",
+    "Attenuation analysis"
+  ],
+  "nb05_pig_barplot": [
+    "nb_figures/nb05_pig_barplot.png",
+    "PIG gene attenuation"
+  ],
+  "nb05_lfc_comparison": [
+    "nb_figures/nb05_lfc_comparison.png",
+    "LFC comparison across conditions"
+  ],
+  "nb07_spatial_pig": [
+    "nb_figures/nb07_spatial_pig.png",
+    "Spatial PIG score"
+  ],
+  "nb07_umap_regions": [
+    "nb_figures/nb07_umap_regions.png",
+    "UMAP by region"
+  ],
+  "nb07_spatial_dist_meninges": [
+    "nb_figures/nb07_spatial_dist_meninges.png",
+    "Distance to meninges"
+  ],
+  "nb07_tissue_rim": [
+    "nb_figures/nb07_tissue_rim.png",
+    "Tissue rim annotation"
+  ],
+  "nb07_pig_gradient_pbs": [
+    "nb_figures/nb07_pig_gradient_pbs.png",
+    "PIG gradient: PBS"
+  ],
+  "nb07_pig_gradient_bri": [
+    "nb_figures/nb07_pig_gradient_bri.png",
+    "PIG gradient: BRICHOS"
+  ],
+  "nb07_pig_compartment_pbs": [
+    "nb_figures/nb07_pig_compartment_pbs.png",
+    "PIG by compartment: PBS"
+  ],
+  "nb07_pig_compartment_bri": [
+    "nb_figures/nb07_pig_compartment_bri.png",
+    "PIG by compartment: BRICHOS"
+  ]
+}

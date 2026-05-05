@@ -1,0 +1,81 @@
+	sample	region	treatment	n_spots
+P24215_301__Caudoputamen	P24215_301	Caudoputamen	BRICHOS	533
+P24215_301__Corpus callosum	P24215_301	Corpus callosum	BRICHOS	227
+P24215_301__Hypothalamus	P24215_301	Hypothalamus	BRICHOS	339
+P24215_301__Infragranular layers	P24215_301	Infragranular layers	BRICHOS	344
+P24215_301__Meninges	P24215_301	Meninges	BRICHOS	122
+P24215_301__Olfactory areas	P24215_301	Olfactory areas	BRICHOS	149
+P24215_301__Supragranualar layers	P24215_301	Supragranualar layers	BRICHOS	453
+P24215_301__Ventricular area	P24215_301	Ventricular area	BRICHOS	33
+P28052_201__Caudoputamen	P28052_201	Caudoputamen	PBS	756
+P28052_201__Corpus callosum	P28052_201	Corpus callosum	PBS	257
+P28052_201__Hypothalamus	P28052_201	Hypothalamus	PBS	227
+P28052_201__Infragranular layers	P28052_201	Infragranular layers	PBS	315
+P28052_201__Meninges	P28052_201	Meninges	PBS	114
+P28052_201__Olfactory areas	P28052_201	Olfactory areas	PBS	182
+P28052_201__Supragranualar layers	P28052_201	Supragranualar layers	PBS	505
+P24215_101__Caudoputamen	P24215_101	Caudoputamen	WT	321
+P24215_101__Corpus callosum	P24215_101	Corpus callosum	WT	191
+P24215_101__Hippocampal formation	P24215_101	Hippocampal formation	WT	336
+P24215_101__Hypothalamus	P24215_101	Hypothalamus	WT	660
+P24215_101__Infragranular layers	P24215_101	Infragranular layers	WT	307
+P24215_101__Meninges	P24215_101	Meninges	WT	125
+P24215_101__Olfactory areas	P24215_101	Olfactory areas	WT	261
+P24215_101__Supragranualar layers	P24215_101	Supragranualar layers	WT	379
+P24215_101__Thalamus	P24215_101	Thalamus	WT	365
+P28052_103__Caudoputamen	P28052_103	Caudoputamen	PBS	249
+P28052_103__Corpus callosum	P28052_103	Corpus callosum	PBS	104
+P28052_103__Hippocampal formation	P28052_103	Hippocampal formation	PBS	150
+P28052_103__Hypothalamus	P28052_103	Hypothalamus	PBS	655
+P28052_103__Infragranular layers	P28052_103	Infragranular layers	PBS	254
+P28052_103__Meninges	P28052_103	Meninges	PBS	79
+P28052_103__Olfactory areas	P28052_103	Olfactory areas	PBS	296
+P28052_103__Supragranualar layers	P28052_103	Supragranualar layers	PBS	367
+P28052_103__Thalamus	P28052_103	Thalamus	PBS	415
+P28052_102__Caudoputamen	P28052_102	Caudoputamen	PBS	247
+P28052_102__Corpus callosum	P28052_102	Corpus callosum	PBS	121
+P28052_102__Hippocampal formation	P28052_102	Hippocampal formation	PBS	154
+P28052_102__Hypothalamus	P28052_102	Hypothalamus	PBS	640
+P28052_102__Infragranular layers	P28052_102	Infragranular layers	PBS	330
+P28052_102__Meninges	P28052_102	Meninges	PBS	95
+P28052_102__Olfactory areas	P28052_102	Olfactory areas	PBS	222
+P28052_102__Supragranualar layers	P28052_102	Supragranualar layers	PBS	413
+P28052_102__Thalamus	P28052_102	Thalamus	PBS	418
+P28052_401__Caudoputamen	P28052_401	Caudoputamen	BRICHOS	727
+P28052_401__Corpus callosum	P28052_401	Corpus callosum	BRICHOS	284
+P28052_401__Hypothalamus	P28052_401	Hypothalamus	BRICHOS	344
+P28052_401__Infragranular layers	P28052_401	Infragranular layers	BRICHOS	366
+P28052_401__Meninges	P28052_401	Meninges	BRICHOS	108
+P28052_401__Olfactory areas	P28052_401	Olfactory areas	BRICHOS	173
+P28052_401__Supragranualar layers	P28052_401	Supragranualar layers	BRICHOS	496
+P24215_201__Caudoputamen	P24215_201	Caudoputamen	BRICHOS	155
+P24215_201__Corpus callosum	P24215_201	Corpus callosum	BRICHOS	209
+P24215_201__Hippocampal formation	P24215_201	Hippocampal formation	BRICHOS	343
+P24215_201__Hypothalamus	P24215_201	Hypothalamus	BRICHOS	445
+P24215_201__Infragranular layers	P24215_201	Infragranular layers	BRICHOS	307
+P24215_201__Meninges	P24215_201	Meninges	BRICHOS	137
+P24215_201__Olfactory areas	P24215_201	Olfactory areas	BRICHOS	418
+P24215_201__Supragranualar layers	P24215_201	Supragranualar layers	BRICHOS	371
+P24215_201__Thalamus	P24215_201	Thalamus	BRICHOS	496
+P28052_301__Caudoputamen	P28052_301	Caudoputamen	PBS	688
+P28052_301__Corpus callosum	P28052_301	Corpus callosum	PBS	324
+P28052_301__Hypothalamus	P28052_301	Hypothalamus	PBS	428
+P28052_301__Infragranular layers	P28052_301	Infragranular layers	PBS	376
+P28052_301__Meninges	P28052_301	Meninges	PBS	102
+P28052_301__Olfactory areas	P28052_301	Olfactory areas	PBS	129
+P28052_301__Supragranualar layers	P28052_301	Supragranualar layers	PBS	476
+P28052_202__Caudoputamen	P28052_202	Caudoputamen	PBS	769
+P28052_202__Corpus callosum	P28052_202	Corpus callosum	PBS	276
+P28052_202__Hypothalamus	P28052_202	Hypothalamus	PBS	180
+P28052_202__Infragranular layers	P28052_202	Infragranular layers	PBS	362
+P28052_202__Meninges	P28052_202	Meninges	PBS	106
+P28052_202__Olfactory areas	P28052_202	Olfactory areas	PBS	202
+P28052_202__Supragranualar layers	P28052_202	Supragranualar layers	PBS	509
+P28052_203__Caudoputamen	P28052_203	Caudoputamen	PBS	818
+P28052_203__Corpus callosum	P28052_203	Corpus callosum	PBS	280
+P28052_203__Hypothalamus	P28052_203	Hypothalamus	PBS	258
+P28052_203__Infragranular layers	P28052_203	Infragranular layers	PBS	336
+P28052_203__Meninges	P28052_203	Meninges	PBS	104
+P28052_203__Olfactory areas	P28052_203	Olfactory areas	PBS	201
+P28052_203__Supragranualar layers	P28052_203	Supragranualar layers	PBS	537
+P28052_203__Ventricular area	P28052_203	Ventricular area	PBS	24
