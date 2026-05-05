@@ -1,0 +1,27 @@
+## Caudoputamen
+	lfc	pvalue	padj	memberships
+Dvl3	-0.2325293291312427	4.791609310365326e-06	0.0652718072830373	
+Canx	0.12937494872187472	8.547345941601166e-06	0.0652718072830373	
+
+## Corpus callosum
+	lfc	pvalue	padj	memberships
+Abra	-0.6309532581572288	5.962797399584681e-06	0.08718206077932762	
+
+## Hypothalamus
+	lfc	pvalue	padj	memberships
+Slc25a47	-0.44009918415981186	2.2510763804107824e-06	0.03383142692119365	
+
+## Infragranular layers
+	lfc	pvalue	padj	memberships
+
+## Meninges
+	lfc	pvalue	padj	memberships
+
+## Olfactory areas
+	lfc	pvalue	padj	memberships
+
+## Supragranualar layers
+	lfc	pvalue	padj	memberships
+Kif1bp	-0.14343557948379537	4.742283918450372e-06	0.04662729543463272	
+Cab39	-0.12914981904821055	6.190148746715263e-06	0.04662729543463272	
+

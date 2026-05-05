@@ -112,21 +112,28 @@ def pseudobulk_lfc(counts: pd.DataFrame, meta: pd.DataFrame,
                     group_a: str, group_b: str,
                     region: str | None = None,
                     pseudocount: float = 1.0,
-                    min_count: int = 10) -> LFCResult:
+                    min_count: int = 10,
+                    min_n: int = 2) -> LFCResult:
     """log2 fold-change A vs B on log-CPM pseudobulk.
 
-    Welch t-test on log2(CPM + pseudocount). For the small-n regime
-    (3 vs 3) this is a serviceable proxy for limma; swap in pyDESeq2
-    for publication.
+    Welch t-test on log2(CPM + pseudocount) when both groups have
+    `>= 2` replicates. With `min_n=1` and one group having a single
+    replicate, falls back to pooled-variance (assume equal variance,
+    borrow from the multi-replicate group). Inflates significance —
+    use only for descriptive ranking when WT n=1, never to claim FDR
+    on individual genes.
+
+    For publication-grade per-gene stats, swap in pyDESeq2.
     """
     m = meta
     if region is not None:
         m = m[m["region"] == region]
     a = m.index[m["treatment"] == group_a]
     b = m.index[m["treatment"] == group_b]
-    if len(a) < 2 or len(b) < 2:
-        raise ValueError(f"need >=2 replicates in each group; got "
-                         f"{group_a}: {len(a)}, {group_b}: {len(b)}")
+    n_a, n_b = len(a), len(b)
+    if n_a < min_n or n_b < min_n:
+        raise ValueError(f"need >={min_n} replicates in each group; got "
+                         f"{group_a}: {n_a}, {group_b}: {n_b}")
     sub = counts.loc[list(a) + list(b)]
     keep = (sub.sum(axis=0) >= min_count).values
     sub = sub.loc[:, keep]
@@ -135,20 +142,33 @@ def pseudobulk_lfc(counts: pd.DataFrame, meta: pd.DataFrame,
     cpm = sub.values / np.where(lib == 0, 1, lib) * 1e6
     log2cpm = np.log2(cpm + pseudocount)
 
-    A = log2cpm[: len(a)]
-    B = log2cpm[len(a):]
+    A = log2cpm[: n_a]
+    B = log2cpm[n_a:]
     mean_a = A.mean(axis=0)
     mean_b = B.mean(axis=0)
-    var_a = A.var(axis=0, ddof=1)
-    var_b = B.var(axis=0, ddof=1)
-    n_a, n_b = len(a), len(b)
 
-    se = np.sqrt(var_a / n_a + var_b / n_b)
-    se = np.where(se == 0, np.nan, se)
-    t = (mean_a - mean_b) / se
-    df = (var_a / n_a + var_b / n_b) ** 2 / (
-        (var_a / n_a) ** 2 / (n_a - 1) + (var_b / n_b) ** 2 / (n_b - 1)
-    )
+    if n_a >= 2 and n_b >= 2:
+        var_a = A.var(axis=0, ddof=1)
+        var_b = B.var(axis=0, ddof=1)
+        se = np.sqrt(var_a / n_a + var_b / n_b)
+        se = np.where(se == 0, np.nan, se)
+        t = (mean_a - mean_b) / se
+        df = (var_a / n_a + var_b / n_b) ** 2 / (
+            (var_a / n_a) ** 2 / (n_a - 1) + (var_b / n_b) ** 2 / (n_b - 1)
+        )
+    else:
+        # single replicate on one side: pool variance from the multi side.
+        # df = n_multi - 1; SE assumes equal variance.
+        if n_a == 1:
+            var_pool = B.var(axis=0, ddof=1)
+            df = n_b - 1
+        else:
+            var_pool = A.var(axis=0, ddof=1)
+            df = n_a - 1
+        se = np.sqrt(var_pool * (1.0 / n_a + 1.0 / n_b))
+        se = np.where(se == 0, np.nan, se)
+        t = (mean_a - mean_b) / se
+
     p = 2 * stats.t.sf(np.abs(t), df=df)
     padj = _bh(np.nan_to_num(p, nan=1.0))
 
@@ -160,6 +180,97 @@ def pseudobulk_lfc(counts: pd.DataFrame, meta: pd.DataFrame,
         padj=pd.Series(padj, index=genes, name="padj"),
         n_a=n_a, n_b=n_b,
     )
+
+
+# ---------- rescue helpers (BRI vs PBS evaluated against a disease list) ----
+
+def signed_rescue(lfc_rescue: pd.Series,
+                   disease_up: Iterable[str],
+                   disease_dn: Iterable[str] | None = None) -> dict:
+    """Test whether disease-up genes go DOWN under treatment (and vice-versa).
+
+    Inputs
+    ------
+    lfc_rescue : per-gene LFC of treatment vs disease-control
+                 (positive => treatment increases the gene).
+    disease_up : genes elevated in disease (PBS vs WT, or literature PIG).
+    disease_dn : optional, genes lowered in disease.
+
+    Returns dict with sign-concordance (binomial vs 0.5) and a one-sample
+    Wilcoxon test on signed LFC pooled across the signature.
+    """
+    lfc_rescue = lfc_rescue.dropna()
+
+    up = pd.Index(disease_up).intersection(lfc_rescue.index)
+    dn = (pd.Index(disease_dn).intersection(lfc_rescue.index)
+          if disease_dn is not None else pd.Index([]))
+
+    # signed expectation: rescue moves up-genes down (-) and dn-genes up (+).
+    pooled = pd.concat([
+        -lfc_rescue.loc[up],
+        lfc_rescue.loc[dn],
+    ])
+    pooled = pooled.replace([np.inf, -np.inf], np.nan).dropna()
+    if len(pooled) == 0:
+        return dict(n=0, frac_concordant=np.nan,
+                    binom_p=np.nan, wilcoxon_p=np.nan,
+                    median_signed_lfc=np.nan)
+
+    concordant = (pooled > 0).sum()
+    n = int(len(pooled))
+    binom_p = stats.binomtest(int(concordant), n, p=0.5,
+                              alternative="greater").pvalue
+    try:
+        w_p = stats.wilcoxon(pooled, alternative="greater").pvalue
+    except ValueError:
+        w_p = np.nan
+    return dict(n=n, n_up=int(len(up)), n_dn=int(len(dn)),
+                frac_concordant=float(concordant) / n,
+                binom_p=float(binom_p),
+                wilcoxon_p=float(w_p),
+                median_signed_lfc=float(pooled.median()))
+
+
+def rescue_slope(lfc_disease: pd.Series, lfc_rescue: pd.Series,
+                  sig_mask=None,
+                  n_boot: int = 1000, seed: int = 0) -> dict:
+    """Slope of LFC_rescue (BRI-vs-PBS) on LFC_disease (PBS-vs-WT).
+
+    Negative slope ~ rescue (treatment opposes disease). Slope magnitude
+    near -1 = full rescue, 0 = no effect, >0 = exacerbation.
+
+    `sig_mask` may be:
+      * pandas Series of bool indexed like `lfc_disease`,
+      * boolean ndarray aligned with `lfc_disease.index`,
+      * iterable of gene names to keep,
+      * None (use all common genes).
+    """
+    common = lfc_disease.index.intersection(lfc_rescue.index)
+    d = lfc_disease.loc[common].values
+    r = lfc_rescue.loc[common].values
+    if sig_mask is not None:
+        if isinstance(sig_mask, pd.Series):
+            sig = sig_mask.reindex(common).fillna(False).astype(bool).values
+        elif isinstance(sig_mask, np.ndarray) and sig_mask.dtype == bool:
+            sig = (pd.Series(sig_mask, index=lfc_disease.index)
+                   .reindex(common).fillna(False).astype(bool).values)
+        else:
+            sig = common.isin(list(sig_mask))
+        d, r = d[sig], r[sig]
+    if len(d) < 3:
+        return dict(slope=np.nan, intercept=np.nan,
+                    ci_low=np.nan, ci_high=np.nan, n=len(d))
+    rng = np.random.default_rng(seed)
+    slopes = np.empty(n_boot)
+    n = len(d)
+    for i in range(n_boot):
+        idx = rng.integers(0, n, size=n)
+        slopes[i] = np.polyfit(d[idx], r[idx], 1)[0]
+    fit = np.polyfit(d, r, 1)
+    return dict(slope=float(fit[0]), intercept=float(fit[1]),
+                ci_low=float(np.nanpercentile(slopes, 2.5)),
+                ci_high=float(np.nanpercentile(slopes, 97.5)),
+                n=int(n))
 
 
 # ---------- sign concordance ------------------------------------------------
