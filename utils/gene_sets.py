@@ -125,6 +125,38 @@ MGND_KRASEMANN2017 = [
     "Lpl", "Cst7", "Igf1", "Ccl6", "Cd9", "Tyrobp", "Ccl2", "Tgfb1",
 ]
 
+# ----- BA4_MIC-7: AD-specific, ITM2B+ "resilience" microglia ---------------
+# Rexach et al., Cell 2024 (DOI: 10.1016/j.cell.2024.08.019; PMID 39265576).
+# AD-specific microglial state in motor cortex (BA4) — a region relatively
+# SPARED in AD. Enriched for amyloid processing, chaperone-mediated
+# autophagy, and oxidative-stress buffering; up-genes enriched for AD GWAS
+# risk; driven by NR3C1/SPI1/MXI1/USF2 (Fig 2E-G, 6C). ITM2B (= Bri2, the
+# BRICHOS precursor) is the top up-marker — hence the direct relevance to
+# the BRICHOS-treated APP-NLGF mice here.
+#
+# Source: Table S5 sheet "BA4_MIC-7 AD" (AD vs all other microglia).
+# Raw table saved at data/external/rexach2024_BA4_MIC7_AD_DE.tsv.
+# Mouse symbols resolved via utils.orthologs.to_mouse (HLA-B -> H2-K1/H2-D1,
+# TF -> Trf). Only 17 genes reach padj<0.05; PLP1/GRID2/CNTN2/DPYSL2 are
+# oligo/neuronal and almost certainly ambient contamination of the nuclei —
+# kept in the *full* set, dropped from *core*.
+BA4_MIC7_UP_REXACH2024 = [
+    "Itm2b", "Grid2", "C3", "Cryab", "Plp1", "H2-K1", "H2-D1", "Cd81",
+    "Bin1", "Cyba", "Dpysl2", "Ddit4", "Grn", "Bsg", "Trf", "Prdx1",
+    "Ppdpf", "Cntn2",
+]
+# Contamination-pruned microglial core (drops oligo/neuronal ambient genes).
+BA4_MIC7_RESILIENCE_CORE = [
+    "Itm2b", "C3", "Cryab", "H2-K1", "H2-D1", "Cd81", "Bin1", "Cyba",
+    "Ddit4", "Grn", "Bsg", "Trf", "Prdx1",
+]
+# Functional sub-programs annotated in Fig 2E (PPI network). Some members
+# come from the broader PPI set (looser threshold than padj<0.05), so these
+# probe the *mechanism* rather than the strict DE list.
+BA4_MIC7_AMYLOID_PROCESSING = ["Itm2b", "Apoe", "Bin1", "Apod"]
+BA4_MIC7_CMA = ["Lamp2", "Hspa8", "Dnajb2", "Cryab"]   # chaperone-mediated autophagy
+BA4_MIC7_OXIDATIVE = ["Mt2", "Mt1", "Prdx1", "Cyba", "Glul"]
+
 
 # Expected direction in disease (PBS vs WT). Used by the rescue
 # heatmap so signatures with no overlap to the data-driven disease
@@ -143,6 +175,12 @@ SIGNATURE_DIRECTION = {
     "oligo_stress":   "up",
     "UPR":            "up",
     "heat_shock":     "up",
+    # BA4_MIC-7 is empirically UP in AD vs control (Rexach). NB: it is
+    # interpreted as PROTECTIVE, so whether BRICHOS should push it up
+    # (more resilience) or down (less inflammation) is the open question —
+    # the notebook reports the BRI-vs-PBS direction without assuming.
+    "BA4_MIC7":       "up",
+    "BA4_MIC7_core":  "up",
     # homeostatic / neuronal programs that go DOWN in disease
     "microglia_homeo": "down",
     "A2_astro":       "down",
@@ -181,6 +219,8 @@ SIGNATURE_REGISTRY = {
     "endocytosis":    ENDOCYTOSIS,
     "heat_shock":     HEAT_SHOCK,
     "UPR":            UNFOLDED_PROTEIN_RESPONSE,
+    "BA4_MIC7":       BA4_MIC7_UP_REXACH2024,
+    "BA4_MIC7_core":  BA4_MIC7_RESILIENCE_CORE,
 }
 
 
