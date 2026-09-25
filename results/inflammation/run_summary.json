@@ -1,0 +1,80 @@
+{
+  "z_thresh": 1.5,
+  "n_spots": 25660,
+  "n_hotspots": 1644,
+  "hotspots_per_treatment": {
+    "PBS": 1123,
+    "BRICHOS": 476,
+    "WT": 45
+  },
+  "signatures": {
+    "Homeostatic": [
+      "P2ry12",
+      "Tmem119",
+      "Cx3cr1",
+      "Hexb",
+      "Siglech",
+      "Selplg",
+      "Csf1r",
+      "Sall1",
+      "Gpr34",
+      "Olfml3",
+      "Serinc3",
+      "Cst3"
+    ],
+    "DAM": [
+      "Trem2",
+      "Tyrobp",
+      "Cst7",
+      "Itgax",
+      "Apoe",
+      "Cd68",
+      "Lpl",
+      "Ctsb",
+      "Ctsd",
+      "Cd9",
+      "Spp1",
+      "Gpnmb",
+      "Lgals3",
+      "B2m",
+      "Fth1",
+      "Axl"
+    ],
+    "Neuroinflammation": [
+      "Il1b",
+      "Tnf",
+      "Nfkbia",
+      "Ccl3",
+      "Ccl4",
+      "Ccl2",
+      "Cxcl10",
+      "Nlrp3",
+      "Il6",
+      "Tlr2",
+      "Ptgs2",
+      "Nfkb1",
+      "Rela",
+      "Il1a",
+      "Tnfaip3"
+    ],
+    "Complement": [
+      "C1qa",
+      "C1qb",
+      "C1qc",
+      "C3",
+      "C4b",
+      "C1qbp",
+      "Cfh"
+    ],
+    "ReactiveAstro": [
+      "Gfap",
+      "Vim",
+      "Serpina3n",
+      "C3",
+      "Lcn2",
+      "Cp",
+      "Steap4"
+    ]
+  },
+  "de_ok": true
+}
