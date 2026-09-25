@@ -23,3 +23,6 @@ __pycache__/
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+# executed notebook byproducts
+*.executed.ipynb
