@@ -2,7 +2,7 @@
 """
 10 - Microglia inflammatory-state analysis: does BRICHOS calm the microglia?
 
-Runs on the REMOTE machine (christoffer@100.115.223.38) in env `sc_py312`,
+Runs on the REMOTE analysis machine in env `sc_py312`,
 because that is where the full ST expression object lives:
     /Users/christoffer/work/karolinska/development/ST_BRICHOS/combined_samples.h5ad
 Annotations (treatment / regions / deconv props) are joined in from the local

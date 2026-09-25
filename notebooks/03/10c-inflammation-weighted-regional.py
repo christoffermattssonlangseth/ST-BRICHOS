@@ -12,7 +12,7 @@
     (Wald test on the treatment:region interaction), plus per-region BRICHOS-PBS
     deltas from section-level pseudobulk.
 
-Runs REMOTELY (sc_py312) on christoffer@100.115.223.38.
+Runs REMOTELY (sc_py312) on the remote analysis machine.
 """
 import warnings
 from pathlib import Path

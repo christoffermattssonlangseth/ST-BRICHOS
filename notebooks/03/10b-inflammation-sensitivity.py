@@ -8,7 +8,7 @@ in microglia-enriched spots) is robust to:
       state effect is not just tracking residual abundance differences;
   (2) hotspot threshold     - rerun at z > 1.0 / 1.5 / 2.0.
 
-Runs REMOTELY (sc_py312) on christoffer@100.115.223.38, same data assembly as 10.
+Runs REMOTELY (sc_py312) on the remote analysis machine, same data assembly as 10.
 """
 import warnings
 from pathlib import Path
