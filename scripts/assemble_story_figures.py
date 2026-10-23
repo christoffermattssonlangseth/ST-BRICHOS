@@ -247,7 +247,7 @@ def figure_story2():
             xpos = max(rf["mean_pbs"].iloc[i], rf["mean_bri"].iloc[i]) + 0.005
             ax_c.text(xpos, i, star, fontsize=8, va="center")
     ax_c.set_yticks(y); ax_c.set_yticklabels([""] * len(y))
-    ax_c.set_xlabel("PIG-rescued spot fraction\n(per-mouse mean)")
+    ax_c.set_xlabel("PIG-rescued spot fraction\n(per-section mean)")
     ax_c.set_title("Spot responder fraction (MWU)", loc="left",
                    fontsize=7.5, pad=2)
     ax_c.legend(loc="lower right", fontsize=6, frameon=False)

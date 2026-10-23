@@ -1,5 +1,7 @@
 # BRICHOS-ST — manuscript findings
 
+> **Note added 2026-10-23.** This summary was written in May 2026, before the treatment–slide confound was found (Sept 2026: all PBS sections on slide P28052, two of three BRICHOS on P24215). A pure slide contrast mimics a negative rescue slope; after within-section centring no region is significant, and after RUVg slide removal only the infragranular cortex rescue partly survives, carried by the P24215 BRICHOS sections (see notebooks/03/14–17 and docs/run-catalogue.md §67–71). Numbers below were corrected on 2026-10-23: sign concordance from `regional_rescue_stats.tsv`, 6 (not 7) PBS sections, and the permutation null recomputed on the same gene set as the observed slope (infragranular p 0.012 → 0.024). The causal claims in this document have not been revised.
+
 Working summary of statistical findings from the spatial transcriptomics
 attenuation analysis. Status as of 2026-05-05. Backs the manuscript at
 `brichos-st.docx`.
@@ -8,7 +10,7 @@ attenuation analysis. Status as of 2026-05-05. Backs the manuscript at
 
 - **Model.** APP\textsubscript{NLGF} transgenic mouse, BRICHOS treatment 2× / week
   for 12 weeks; harvested for coronal Visium sections.
-- **Cohort.** WT n = 1 mouse / 1 section; PBS n = 3 mice / 7 sections;
+- **Cohort.** WT n = 1 mouse / 1 section; PBS n = 3 mice / 6 sections;
   BRICHOS n = 3 mice / 3 sections.
 - **Regions analysed.** 10 Allen-aligned regions; usable for inferential
   testing: 7 (cortex supra/infra, caudoputamen, corpus callosum,
@@ -29,9 +31,9 @@ adequate (3 vs 7 sections).
   - T2′ — sign concordance (binomial vs 0.5).
   - T3′ — rescue slope of LFC\textsubscript{BRI−PBS} on
     LFC\textsubscript{PBS−WT}, with bootstrap CI.
-- **Spot-level orthogonal test** — per-mouse fraction of PIG-rescued
-  spots (z-shift < −1 vs PBS reference), Mann–Whitney across mice.
-- **Permutation null** — 84 mouse-level BRI/PBS reassignments
+- **Spot-level orthogonal test** — per-section fraction of PIG-rescued
+  spots (z-shift < −1 vs PBS reference), Mann–Whitney across sections.
+- **Permutation null** — 84 section-level BRI/PBS reassignments
   (WT held fixed), empirical p on the rescue slope.
 
 ## 3. Convergent rescue in cortex and striatum
@@ -40,13 +42,13 @@ Three orthogonal tests agree on the same regions.
 
 | Region | Sign concordance | Spot responder MWU | Slope perm null | Conclusion |
 |---|---:|---:|---:|---|
-| Infragranular cortex | 0.82 *** | p = 0.024 | **p = 0.012** | strongest |
-| Supragranular cortex | 0.85 *** | p = 0.048 | NS | robust |
-| Caudoputamen | 0.78 *** | p = 0.048 | NS | robust |
-| Olfactory areas | 0.78 *** | NS (0.27) | marginal (0.12) | direction-only |
-| Meninges | 0.78 *** | NS (BRI < PBS) | marginal (0.12) | direction-only |
-| Corpus callosum | 0.40 (NS) | NS (0.36) | wrong direction | non-responder |
-| Hypothalamus | 0.46 (NS) | NS (0.19) | NS | non-responder |
+| Infragranular cortex | 0.82 *** | p = 0.024 | **p = 0.024** | strongest |
+| Supragranular cortex | 0.81 *** | p = 0.048 | NS | robust |
+| Caudoputamen | 0.74 *** | p = 0.048 | NS | robust |
+| Olfactory areas | 0.79 *** | NS (0.27) | marginal (0.13) | direction-only |
+| Meninges | 0.76 *** | NS (BRI < PBS) | marginal (0.14) | direction-only |
+| Corpus callosum | 0.38 (NS) | NS (0.36) | wrong direction | non-responder |
+| Hypothalamus | 0.47 (NS) | NS (0.19) | NS | non-responder |
 
 **Headline.** Convergent significance in **infragranular and
 supragranular cortex plus caudoputamen** establishes BRICHOS-mediated
@@ -196,7 +198,7 @@ caveat / discussion point.
 1. WT n = 1 — disease signature p-values are descriptive; rescue
    tests use BRICHOS vs PBS where replication is adequate.
 2. Permutation resolution = 1 / 84 ≈ 0.012 — slope-based test cannot
-   resolve smaller p-values.
+   resolve smaller p-values. Infragranular cortex sits at 2/84 = 0.024.
 3. Spot responder threshold = −1 SD relative to PBS regional median;
    threshold-sensitive in regions with skewed PBS distributions
    (hippocampus, thalamus).
@@ -209,12 +211,12 @@ caveat / discussion point.
 
 ## 8. Manuscript-ready phrases
 
-> Three orthogonal tests — gene-level sign concordance, mouse-level
+> Three orthogonal tests — gene-level sign concordance, section-level
 > Mann–Whitney on rescued-spot fractions, and slope permutation null —
 > converged on the supragranular and infragranular cortex and the
 > caudoputamen as the regions of robust BRICHOS-mediated rescue
-> (binomial p < 1×10⁻³, MWU p ≤ 0.048, perm p = 0.012 for
-> infragranular cortex at the resolution floor).
+> (binomial p < 1×10⁻¹², MWU p ≤ 0.048, perm p = 0.024 for
+> infragranular cortex).
 
 > Across 21 cell-type and pathway signatures, BRICHOS treatment
 > dampened not only the canonical microglial PIG program but also

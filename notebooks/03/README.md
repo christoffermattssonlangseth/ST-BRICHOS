@@ -5,8 +5,8 @@ Run order:
 1. `01-pseudobulk.ipynb` — collapse spot counts to (sample, region) (min_spots=10 to keep small regions).
 2. `02-attenuation-stats.ipynb` — global PBS-vs-WT disease signature (n=1 WT pooled-variance fallback), then per-region BRI-vs-PBS rescue tests: sign concordance + rescue slope with bootstrap CI. Outputs `disease_signature.tsv`, `regional_rescue_stats.tsv`.
 3. `03-signature-mixed-model.ipynb` — mixed-effects on PIG / microglia / endocytosis scores at spot level (mouse random effect, robust to n=1 WT).
-4. `04-responder-spots.ipynb` — per-spot z-shift vs PBS median (treatment-blind, avoids n=1 WT bottleneck), responder maps, Mann-Whitney on per-mouse responder fraction.
-5. `05-permutation-null.ipynb` — mouse-level permutation of BRI/PBS labels (WT held out). C(10,3)=120 unique permutations, empirical p per region for the rescue slope.
+4. `04-responder-spots.ipynb` — per-spot z-shift vs PBS mean/SD (treatment-blind, avoids n=1 WT bottleneck), responder maps, Mann-Whitney on per-section responder fraction.
+5. `05-permutation-null.ipynb` — section-level permutation of BRI/PBS labels (WT held out). C(9,3)=84 unique reassignments, empirical p per region for the rescue slope, on the same disease gene set as 02 (corrected 2026-10-23; infragranular p = 0.024, previously 0.012 with a mismatched null).
 6. `06-confounder-checks.ipynb` — QC filter, slide-batch, composition adjustment, meninges-rim sensitivity.
 7. `07-broader-signatures.ipynb` — beyond PIG: rescue heatmap across ~20 cell-type and pathway signatures (astrocyte, oligo, barrier, synapse, heat-shock, etc.); discovery of top non-PIG DEGs per region; optional GSEA via gseapy.
 

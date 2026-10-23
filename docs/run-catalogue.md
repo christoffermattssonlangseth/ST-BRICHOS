@@ -81,6 +81,8 @@ One entry per analysis run, built 2026-10-23 from notebooks, scripts, result fil
 
 **Caveats.** Sign bug as above. The PIG-overlap print-out applies no significance filter: it intersects PIG names present in the full DE table with names in the PBS-vs-WT table, so it is not evidence of modulation. Spot-level pseudoreplication. Fully confounded with slide.
 
+**Corrected 2026-10-23:** the contrast is fixed in the notebook (`group="BRICHOS", reference="PBS"`) with a dated note, but the notebook has not been re-run (data volume not mounted). Reading the printed table with the sign flipped, at least 20 of the 24 "partial" genes meet the strict criteria.
+
 **Next.** Re-run with the contrast sign fixed and at pseudobulk level. The later notebook 12 (§17) does pseudobulk; the notes describe the attenuation/rescue tests in notebooks/03 as handling this properly.
 
 ### 8. Leiden clustering at resolution 0.3 is hand-mapped to ten brain "regions" that every later regional analysis uses
@@ -492,7 +494,7 @@ Missing inputs are drawn as grey "missing" boxes.
 
 **Caveats.** These figures reuse inline notebook renders, so they inherit the caveats of §20–28: n = 1 WT, the slide confound, and the FDR=nan panel. They were superseded by the story figures (§31).
 
-### 31. Three story figures present convergent but partial BRICHOS rescue in cortex and caudoputamen (sign concordance 0.74–0.82; infragranular slope permutation p = 0.012)
+### 31. Three story figures present convergent but partial BRICHOS rescue in cortex and caudoputamen (sign concordance 0.74–0.82; infragranular slope permutation p = 0.024)
 *Code:* `scripts/assemble_story_figures.py` · *Results:* `results/tables/attenuation/` · *Figure:* `results/figures/manuscript/figure_story1_design_disease.png`, `results/figures/manuscript/figure_story2_regional_rescue.png`, `results/figures/manuscript/figure_story3_mechanistic_axis.png`
 
 **Rationale.** These replace Figures 0–5 (§30) with a three-part narrative: design and disease, regional rescue, and mechanistic axis. They are drawn directly from the notebooks/03 attenuation tables (scaffolded in §33), not from notebook screenshots.
@@ -509,7 +511,7 @@ Missing inputs are drawn as grey "missing" boxes.
 
 | Region | Concordance | Binomial p | Slope | Perm p | Responder fraction, PBS → BRI | MWU p |
 |---|---:|---:|---:|---:|---|---:|
-| Infragranular | 0.82 | 4e-23 | −0.070 | 0.012 | 0.066 → 0.105 | 0.024 |
+| Infragranular | 0.82 | 4e-23 | −0.070 | 0.024 | 0.066 → 0.105 | 0.024 |
 | Supragranular | 0.81 | 5e-22 | −0.011 | 0.26 | 0.059 → 0.170 | 0.048 |
 | Olfactory | 0.79 | — | −0.091 | 0.12 | — | 0.27 |
 | Meninges | 0.76 | — | −0.104 | 0.12 | BRI < PBS | 0.87 |
@@ -521,6 +523,8 @@ The corpus callosum slope CI is 0.004–0.179, i.e. in the wrong direction.
 
 **Caveats.** The underlying statistics belong to the notebooks/03 runs. This entry only documents their presentation. All slopes are far from the full-normalisation value of −1, so rescue is partial. Every contrast is BRICHOS vs PBS and therefore confounded with slide. The later slide-removal work (memory: slide-removal thread) found that the cortex rescue survives RUVg but that section 401 disagrees. The permutation p-value label has a formatting bug: it prints "p≤.012" whenever p ≤ 0.001.
 
+**Corrected 2026-10-23:** the figures were regenerated after the §39 permutation null was recomputed on the matching gene set; the infragranular slope p is now 0.024 (olfactory 0.13, meninges 0.14).
+
 ### 32. Manuscript Results and Discussion text was drafted claiming convergent cortical/striatal rescue and an interferon-driven microglia–astrocyte cascade
 *Code:* `scripts/update_manuscript_docx.py`
 
@@ -531,6 +535,8 @@ The corpus callosum slope CI is 0.004–0.179, i.e. in the wrong direction.
 **Results.** Text only. It states sign concordance 0.78–0.85 (binomial p < 1e-3), per-mouse Mann–Whitney p = 0.048 / 0.024 / 0.048 and infragranular slope permutation p = 0.012. Olfactory and meninges reach only p = 0.12. Corpus callosum and hypothalamus fail all three tests. Hippocampus, thalamus and ventricular area are excluded (≤ 2 PBS sections). Whether the script was run cannot be verified, because its outputs live outside the repo.
 
 **Caveats.** The drafted text says "n = 3 vs n = 7 sections" and "84 unique reassignments … across the seven non-WT mice". The TSVs have n_PBS = 6, and 84 = C(9,3), which corresponds to 9 non-WT sections, not 7 mice. It describes the Mann–Whitney test as "per-mouse", although the unit is the section. It predates the discovery of the slide confound (2026-09-25), so its causal claims need hedging.
+
+**Corrected 2026-10-23:** numbers in `scripts/update_manuscript_docx.py` and `results/manuscript_findings.md` were fixed (6 PBS sections, nine non-WT sections, per-section tests, sign concordance 0.74–0.82, infragranular permutation p = 0.024). `manuscript_findings.md` now opens with a dated note on the slide confound; the causal claims themselves have not been rewritten.
 
 ### 33. The disease-anchored attenuation statistics roadmap was scaffolded as seven generated notebooks (pseudobulk → rescue stats → mixed model → responder spots → permutation null → confounders → broader signatures)
 *Code:* `scripts/_build_attenuation_notebooks.py`
@@ -685,7 +691,7 @@ Hippocampal formation, Thalamus and Ventricular area have n=1 BRICHOS, so they w
 - The meninges result contradicts §36, where meninges had the steepest slope.
 - Responder status partly tracks lower PIG overall and therefore slide. P24215 sections are shallower, and per the classifier thread (03/12), BRICHOS-ness is roughly low depth. Nothing here separates the BRICHOS effect from the slide.
 
-### 39. A section-label permutation test of the rescue slope reaches p = 0.012 only in infragranular cortex, which is the smallest p-value 84 permutations allow
+### 39. A section-label permutation test of the rescue slope gives p = 0.024 (2 of 84) in infragranular cortex and p ≥ 0.13 everywhere else
 *Notebook:* `notebooks/03/05-permutation-null.ipynb` · *Code:* `utils/attenuation.py` · *Results:* `results/tables/attenuation/rescue_permutation_null.tsv` · *Figure:* `results/figures/manuscript/figure_story2_regional_rescue.png` (rescue slope + permutation null panel)
 
 **Rationale.** The bootstrap CIs and binomial tests in §36 resample genes and so ignore that only 9 sections carry the treatment contrast. Permuting treatment labels at section level gives an honest null with exact resolution.
@@ -695,25 +701,25 @@ Hippocampal formation, Thalamus and Ventricular area have n=1 BRICHOS, so they w
 - Every assignment of 3 of the 9 non-WT sections to "BRICHOS" is enumerated: C(9,3) = 84 permutations.
 - For each permutation and region, the BRICHOS-vs-PBS LFC is recomputed and the rescue slope refitted without bootstrap.
 - The one-sided p is the fraction of null slopes at or below the observed slope.
-- The observed slope is read from `regional_rescue_stats.tsv` (§36).
+- The observed slope is read from `regional_rescue_stats.tsv` (§36); since 2026-10-23 the notebook asserts it equals the slope recomputed with the null's own code.
+- Gene set: the 190-gene union of data-driven PBS-vs-WT up genes (167) and literature PIG (52 present), the same set as the observed slope.
 
-**Results.** The notebook has no saved outputs; the numbers below come from the tracked table.
+**Results.** Re-run 2026-10-23 with matching gene sets (`rescue_permutation_null.tsv`):
 
 | Region | Observed slope | Null median | p (one-sided) |
 |---|---|---|---|
-| Infragranular layers | −0.070 | 0.002 | 0.012 (= 1/84, the floor) |
-| Meninges | −0.104 | — | 0.12 |
-| Olfactory areas | −0.091 | — | 0.12 |
-| Hypothalamus | — | — | 0.25 |
-| Supragranular layers | — | — | 0.26 |
-| Caudoputamen | — | — | 0.52 |
-| Corpus callosum | — | — | 0.82 |
+| Infragranular layers | −0.070 | 0.001 | 0.024 (2/84) |
+| Olfactory areas | −0.091 | −0.005 | 0.13 |
+| Meninges | −0.104 | −0.003 | 0.14 |
+| Hypothalamus | −0.027 | 0.002 | 0.26 |
+| Supragranular layers | −0.011 | 0.001 | 0.32 |
+| Caudoputamen | −0.004 | 0.000 | 0.44 |
+| Corpus callosum | +0.061 | −0.000 | 0.85 |
 
 The steepest observed slopes (meninges, olfactory areas) are not significant at section level.
 
 **Caveats.**
-- The markdown says "3 BRICHOS vs 7 PBS, C(10,3)=120 permutations", and the README repeats it. The data have 6 PBS sections, so there are 84 permutations.
-- The observed slope (from §36) was fitted over the 190-gene union of data-driven and PIG genes. The null slopes are fitted over the 167 data-driven up genes only, so the observed value and the null use different gene sets.
+- **Corrected 2026-10-23:** the original null slopes were fitted over the 167 data-driven up genes only, while the observed slope used the 190-gene union, so observed and null were on different gene sets. With matching sets, infragranular p rises from 0.012 (the floor) to 0.024, and olfactory/meninges from 0.12 to 0.13/0.14. The notebook, README and generator (`scripts/_build_attenuation_notebooks.py`) no longer say "7 PBS, C(10,3)=120"; the data have 6 PBS sections and 84 reassignments.
 - Permuting labels does not break the slide structure: two of the three real BRICHOS sections are the only non-WT sections on P24215.
 - **Corrected 2026-10-22:** notebook 03/15 reports that after RUVg slide removal the infragranular p stays at the floor of 0.012 under every method. Supragranular layers also reach 0.024 with RUVg k1, but that is weakened with k2. P28052_401 alone does not replicate the cortical rescue.
 

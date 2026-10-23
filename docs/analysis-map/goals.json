@@ -4,48 +4,71 @@
   "label": "Foundations: data, regions, cell types",
   "question": "What data, brain-region labels and cell-type mappings does every later analysis rest on?",
   "answer": "Ten Visium sections (1 WT, 6 PBS, 3 BRICHOS; sections, not mice, are the replicates) were filtered, merged and clustered into ~25,660 spots. Leiden clusters were hand-mapped to ten brain regions that all regional analyses use; collaborator annotations cover only the seven P28052 sections. Early single-cell label transfer and Tangram mapping failed (99 % of spots called neurons), which is why deconvolution was later redone with cell2location.",
-  "groups": ["Data processing", "Region annotation", "Early cell-type mapping"]
+  "groups": [
+   "Data processing",
+   "Region annotation",
+   "Early cell-type mapping"
+  ]
  },
  {
   "id": "g2",
   "label": "Disease: what does APP-NLGF change?",
   "question": "Which genes and pathways distinguish APP-NLGF (PBS) brain from wild type?",
   "answer": "A strong, reproducible microglial disease signal: plaque-induced and DAM genes (Cst7, Ccl6, Cd74, Ccl3, Itgax, Tyrobp) lead 803 whole-section DEGs and a 167-up / 32-down global disease signature, with NF-κB, TNFα and hypoxia pathways activated. It rests on a single WT section, so it anchors the disease axis rather than giving per-region WT tests.",
-  "groups": ["Disease signature", "Disease pathways"]
+  "groups": [
+   "Disease signature",
+   "Disease pathways"
+  ]
  },
  {
   "id": "g3",
   "label": "Global rescue: does BRICHOS reverse it?",
   "question": "Across the whole tissue, does BRICHOS move the disease signature back toward wild type?",
-  "answer": "Not clearly. BRICHOS vs WT shows the same DAM/PIG up-regulation and the same pathway profile as PBS vs WT; nearly every shared DEG sits on the diagonal, and a joint model finds only 27 BRICHOS-vs-PBS DEGs, none of them core disease markers. The 'zero strict rescues' result in the early spot-level analysis is an artefact of a sign error.",
-  "groups": ["Whole-tissue rescue"]
+  "answer": "Not clearly. BRICHOS vs WT shows the same DAM/PIG up-regulation and the same pathway profile as PBS vs WT; nearly every shared DEG sits on the diagonal, and a joint model finds only 27 BRICHOS-vs-PBS DEGs, none of them core disease markers. An early spot-level analysis reported zero strict rescues because of a sign error; corrected, about 20 genes qualify, led by hypothalamic neuropeptides and MHC-II genes, at spot level and slide-confounded.",
+  "groups": [
+   "Whole-tissue rescue"
+  ]
  },
  {
   "id": "g4",
   "label": "Regional rescue: where does BRICHOS act?",
   "question": "Is there partial rescue in specific brain regions, and how robust is it?",
-  "answer": "Disease genes move toward WT in cortex, meninges and olfactory areas but not corpus callosum or hypothalamus, led by interferon/MHC-II and reactive-astrocyte programs rather than plaque-induced genes. Formal support is thin: region-wise DESeq2 finds 0–43 DEGs, and only infragranular cortex reaches the permutation floor (p = 0.012 of 84). All of it must be read against the slide confound.",
-  "groups": ["Regional DE", "Rescue statistics", "Signature breadth"]
+  "answer": "Disease genes move toward WT in cortex, meninges and olfactory areas but not corpus callosum or hypothalamus, led by interferon/MHC-II and reactive-astrocyte programs rather than plaque-induced genes. Formal support is thin: region-wise DESeq2 finds 0–43 DEGs, and only infragranular cortex passes a section-level permutation test (p = 0.024, 2 of 84). All of it must be read against the slide confound.",
+  "groups": [
+   "Regional DE",
+   "Rescue statistics",
+   "Signature breadth"
+  ]
  },
  {
   "id": "g5",
   "label": "Microglia: fewer, or calmer?",
   "question": "Does BRICHOS change how many microglia there are, or what state they are in?",
   "answer": "Not their number: cell2location and stereoscope both show BRICHOS ~5–8 % below PBS, but the gap goes to ~+1 % once slide is modelled. Their state shifts toward homeostatic (lower DAM:homeostatic ratio, reproduced with both deconvolution methods), yet that also halves and loses significance with slide, and within sections the plaque-niche DAM response is fully intact under BRICHOS.",
-  "groups": ["Deconvolution (cell2location)", "Stereoscope cross-check", "Microglial state"]
+  "groups": [
+   "Deconvolution (cell2location)",
+   "Stereoscope cross-check",
+   "Microglial state"
+  ]
  },
  {
   "id": "g6",
   "label": "Treatment or slide?",
   "question": "Can the BRICHOS effects be separated from the Visium slide they were run on?",
   "answer": "Mostly not. All PBS sections are on slide P28052 and two of three BRICHOS on P24215; a classifier separates the groups by depth and slide, not treatment, and a pure slide contrast mimics a rescue slope. Within-section centring and RUVg slide removal leave only the infragranular cortex rescue partly standing, and section 401 (the one BRICHOS on the PBS slide) does not reproduce it.",
-  "groups": ["Slide confound", "Treatment classifier", "Slide removal"]
+  "groups": [
+   "Slide confound",
+   "Treatment classifier",
+   "Slide removal"
+  ]
  },
  {
   "id": "g7",
   "label": "Write-up: how was the story told?",
   "question": "Which figures and manuscript text exist, and are they still consistent with the analyses?",
   "answer": "Figure composites, story figures and a drafted Results/Discussion from May 2026 claim convergent cortical/striatal rescue and an interferon cascade. They predate the September discovery of the slide confound and some counts (e.g. 7 PBS sections) are wrong, so the text needs revising.",
-  "groups": ["Manuscript & figures"]
+  "groups": [
+   "Manuscript & figures"
+  ]
  }
 ]
