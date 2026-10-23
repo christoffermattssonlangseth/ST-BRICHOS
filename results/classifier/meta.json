@@ -1,0 +1,7 @@
+{
+ "coef_corr_treatment_vs_slide": 0.5725827733267375,
+ "n_train_per_section": 800,
+ "n_hvg": 2000,
+ "n_pc": 30,
+ "C": 0.05
+}
