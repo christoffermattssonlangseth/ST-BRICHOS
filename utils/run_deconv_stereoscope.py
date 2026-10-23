@@ -19,6 +19,7 @@ Run headless on the peer (conda env `c2l`):
     python utils/run_deconv_stereoscope.py
 Override epochs/device via env vars, e.g.
     STEREO_SC_EPOCHS=400 STEREO_ST_EPOCHS=2000 STEREO_BATCH=1024 STEREO_ACCEL=cpu python utils/run_deconv_stereoscope.py
+Skip training and reuse the saved models with STEREO_RESUME=1.
 """
 from __future__ import annotations
 import inspect, os, sys, warnings
@@ -48,6 +49,7 @@ ACCELERATOR = os.environ.get('STEREO_ACCEL', 'cpu')
 SC_EPOCHS = int(os.environ.get('STEREO_SC_EPOCHS', 400))
 ST_EPOCHS = int(os.environ.get('STEREO_ST_EPOCHS', 2000))
 BATCH = int(os.environ.get('STEREO_BATCH', 1024))   # scvi default 128 is overhead-bound on CPU
+RESUME = os.environ.get('STEREO_RESUME', '0') == '1'  # load saved models instead of training
 N_HVG_FALLBACK = 5000
 
 # --- paths -------------------------------------------------------------
@@ -121,16 +123,22 @@ vis = vis[:, genes].copy()
 from scvi.external import RNAStereoscope, SpatialStereoscope  # noqa: E402
 
 RNAStereoscope.setup_anndata(ref, layer='counts', labels_key='cell_type')
-sc_model = RNAStereoscope(ref)
-log(f'training RNAStereoscope ({SC_EPOCHS} epochs, batch {BATCH}, {ACCELERATOR})...')
-sc_model.train(max_epochs=SC_EPOCHS, batch_size=BATCH, **train_kwargs(sc_model.train))
-sc_model.save(str(REF_DIR_S / 'rna_model'), overwrite=True)
-
 SpatialStereoscope.setup_anndata(vis, layer='counts')
-st_model = SpatialStereoscope.from_rna_model(vis, sc_model)
-log(f'training SpatialStereoscope ({ST_EPOCHS} epochs, batch {BATCH}, {ACCELERATOR})...')
-st_model.train(max_epochs=ST_EPOCHS, batch_size=BATCH, **train_kwargs(st_model.train))
-st_model.save(str(REF_DIR_S / 'spatial_model'), overwrite=True)
+if RESUME:
+    # reuse the models saved by a previous run (skips ~4 h of training)
+    log('STEREO_RESUME: loading saved models from', REF_DIR_S)
+    sc_model = RNAStereoscope.load(str(REF_DIR_S / 'rna_model'), adata=ref)
+    st_model = SpatialStereoscope.load(str(REF_DIR_S / 'spatial_model'), adata=vis)
+else:
+    sc_model = RNAStereoscope(ref)
+    log(f'training RNAStereoscope ({SC_EPOCHS} epochs, batch {BATCH}, {ACCELERATOR})...')
+    sc_model.train(max_epochs=SC_EPOCHS, batch_size=BATCH, **train_kwargs(sc_model.train))
+    sc_model.save(str(REF_DIR_S / 'rna_model'), overwrite=True)
+
+    st_model = SpatialStereoscope.from_rna_model(vis, sc_model)
+    log(f'training SpatialStereoscope ({ST_EPOCHS} epochs, batch {BATCH}, {ACCELERATOR})...')
+    st_model.train(max_epochs=ST_EPOCHS, batch_size=BATCH, **train_kwargs(st_model.train))
+    st_model.save(str(REF_DIR_S / 'spatial_model'), overwrite=True)
 
 for name, m in (('rna', sc_model), ('spatial', st_model)):
     hist = m.history.get('elbo_train', m.history.get('train_loss_epoch'))
@@ -141,7 +149,11 @@ for name, m in (('rna', sc_model), ('spatial', st_model)):
 # ======================================================================
 # 4 · proportions -> tables, figures
 # ======================================================================
-raw = st_model.get_proportions(keep_noise=True)
+# st_model.get_proportions(keep_noise=True) crashes when cell_type_mapping is an
+# ndarray (`.append` on ndarray in scvi), so build the frame ourselves
+raw = pd.DataFrame(st_model.module.get_proportions(keep_noise=True),
+                   columns=list(st_model.cell_type_mapping) + ['noise_term'],
+                   index=st_model.adata.obs.index)
 noise_cols = [c for c in raw.columns if c not in ref.obs['cell_type'].cat.categories]
 noise = raw[noise_cols].sum(axis=1)
 frac = raw.drop(columns=noise_cols)
