@@ -1,0 +1,14 @@
+{
+  "project": "ST-BRICHOS",
+  "question": "Does BRICHOS reverse Alzheimer's gene expression, and where?",
+  "question_long": "Does BRICHOS treatment reverse Alzheimer's-related gene expression in the APP-NLGF mouse brain, and in which brain regions?",
+  "intro": "10x Visium spatial transcriptomics of coronal brain sections from APP-NLGF mice treated with BRICHOS or PBS, with a wild-type control. Claims were tested against region-matched contrasts, two deconvolution methods, permutation nulls and explicit checks of the treatment-slide confound.",
+  "centre_label": "BRI",
+  "repo_root": "../..",
+  "catalogue": "docs/run-catalogue.md",
+  "notebooks_glob": "notebooks/*/*.ipynb",
+  "figure_dirs": ["results/figures"],
+  "data_dir": "docs/analysis-map",
+  "build_dir": "build/analysis_map",
+  "statuses": null
+}

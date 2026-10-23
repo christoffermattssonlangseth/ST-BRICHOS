@@ -1,0 +1,42 @@
+{
+ "move": {
+  "figs/78b837adf5548d60.jpg": [
+   8,
+   4
+  ],
+  "figs/bd66b42c6c831763.jpg": [
+   51,
+   50
+  ],
+  "figs/7406d8c20bf316ae.jpg": [
+   58,
+   59
+  ],
+  "figs/508e3af1430578d7.jpg": [
+   58,
+   60
+  ],
+  "figs/7506bd2341780278.jpg": [
+   58,
+   62
+  ]
+ },
+ "drop": [
+  "figs/1f35c7b38b74b39c.jpg",
+  "figs/af91631227fc9f2d.jpg",
+  "figs/60d2bcc06761023f.jpg",
+  "figs/a88ca6fd8b57f296.jpg",
+  "figs/dd405c73cd79ebed.jpg",
+  "figs/321515512d97b8bf.jpg",
+  "figs/6b3a657c0066e66c.jpg",
+  "figs/42cb5d5f85e74482.jpg",
+  "figs/a4ebc32c24c31d51.jpg",
+  "figs/a44dd2a5313ea2c0.jpg",
+  "figs/e3d1b19454f7ca8d.jpg",
+  "figs/0b46bd92c34c3d86.jpg",
+  "figs/1c78737a86de56a8.jpg",
+  "figs/38ebe7c8f4b1455a.jpg",
+  "figs/3c963cd5d40c4055.jpg",
+  "figs/a6e0b7ef9c7c7773.jpg"
+ ]
+}

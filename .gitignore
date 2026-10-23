@@ -26,3 +26,6 @@ Thumbs.db
 
 # executed notebook byproducts
 *.executed.ipynb
+
+# analysis map build output
+build/
